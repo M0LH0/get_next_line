@@ -6,7 +6,7 @@
 /*   By: lsilva-p <lsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 09:08:06 by lsilva-p          #+#    #+#             */
-/*   Updated: 2023/08/26 15:33:34 by lsilva-p         ###   ########.fr       */
+/*   Updated: 2023/08/28 08:13:40 by lsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ typedef struct s_file
 char	*get_next_line(int fd);
 void	to_the_last(t_byte **head, t_byte *node);
 t_byte	*new_node(char byte);
+char	*free_file(t_byte *line);
 
 #endif

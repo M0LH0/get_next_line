@@ -6,7 +6,7 @@
 /*   By: lsilva-p <lsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 09:08:02 by lsilva-p          #+#    #+#             */
-/*   Updated: 2023/08/26 15:18:11 by lsilva-p         ###   ########.fr       */
+/*   Updated: 2023/08/28 08:26:02 by lsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ char	*ft_read_line(t_file *make)
 			if (make->read <= 0)
 			{
 				if (make->string && make->read < 0)
-					return (free(make->string), NULL);
+				{
+					free_file(make->string);
+					return (NULL);
+				}
 				break ;
 			}
 		}

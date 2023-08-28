@@ -6,7 +6,7 @@
 /*   By: lsilva-p <lsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 09:08:04 by lsilva-p          #+#    #+#             */
-/*   Updated: 2023/08/26 08:37:54 by lsilva-p         ###   ########.fr       */
+/*   Updated: 2023/08/28 08:13:11 by lsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,19 @@ void	to_the_last(t_byte **head, t_byte *node)
 	while (reposition->next)
 		reposition = reposition->next;
 	reposition->next = node;
+}
+
+char	*free_file(t_byte *line)
+{
+	t_byte	*temp;
+
+	temp = line;
+	while (temp)
+	{
+		temp = temp->next;
+		free(line);
+		line = temp;
+	}
+	temp = NULL;
+	return (NULL);
 }
