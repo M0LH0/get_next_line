@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsilva-p <lsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/24 09:08:06 by lsilva-p          #+#    #+#             */
-/*   Updated: 2023/08/28 16:27:32 by lsilva-p         ###   ########.fr       */
+/*   Created: 2023/08/26 13:48:39 by lsilva-p          #+#    #+#             */
+/*   Updated: 2023/08/28 09:19:56 by lsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 1024
 # endif
 
 # include <unistd.h>
 # include <stdlib.h> 
 
-typedef struct s_byte
+typedef struct t_byte
 {
 	char			act_chr;
-	struct s_byte	*next;
+	struct t_byte	*next;
 }				t_byte;
 
 typedef struct s_file
@@ -33,7 +33,7 @@ typedef struct s_file
 	int		pos;
 	int		read;
 	t_byte	*string;
-	char	buffer[BUFFER_SIZE];
+	char	*buffer;
 }				t_file;
 
 char	*get_next_line(int fd);

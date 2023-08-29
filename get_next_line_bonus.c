@@ -1,35 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsilva-p <lsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/24 09:08:02 by lsilva-p          #+#    #+#             */
-/*   Updated: 2023/08/28 16:26:18 by lsilva-p         ###   ########.fr       */
+/*   Created: 2023/08/28 08:55:21 by lsilva-p          #+#    #+#             */
+/*   Updated: 2023/08/28 16:45:32 by lsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static t_file	file;
+	static t_file	file[1024];
 
-	if (file.pos >= file.read)
+	if (fd >= 0 && file[fd].pos >= file[fd].read)
 	{
-		file.pos = 0;
-		while (file.pos < BUFFER_SIZE)
-			file.buffer[file.pos++] = '\0';
-		file.pos = 0;
-		file.len = 0;
-		file.string = NULL;
-		file.fd = fd;
-		file.read = read(fd, file.buffer, BUFFER_SIZE);
+		file[fd].pos = 0;
+		if (file[fd].buffer)
+			free(file[fd].buffer);
+		file[fd].buffer = (char *)malloc((BUFFER_SIZE + 1) * (sizeof (char)));
+		if (!file[fd].buffer)
+			return (NULL);
+		while (file[fd].pos < BUFFER_SIZE)
+			file[fd].buffer[file[fd].pos++] = '\0';
+		file[fd].pos = 0;
+		file[fd].len = 0;
+		file[fd].string = NULL;
+		file[fd].fd = fd;
+		file[fd].read = read(fd, file[fd].buffer, BUFFER_SIZE);
 	}
-	if (file.fd < 0 || file.buffer[file.pos] == '\0')
+	if (fd < 0 || fd > 1024 || file[fd].buffer[file[fd].pos] == '\0')
+	{
+		if (file[fd].buffer)
+			free(file->buffer);
 		return (NULL);
-	return (ft_read_line(&file));
+	}
+	return (ft_read_line(&file[fd]));
 }
 
 char	*ft_read_line(t_file *make)
@@ -45,6 +54,9 @@ char	*ft_read_line(t_file *make)
 		make->len++;
 		if (make->pos >= make->read)
 		{
+			if (make->buffer)
+				free(make->buffer);
+			make->buffer = malloc(BUFFER_SIZE + 1);
 			make->pos = 0;
 			make->read = read(make->fd, make->buffer, BUFFER_SIZE);
 			if (make->read <= 0)

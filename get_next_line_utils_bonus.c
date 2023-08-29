@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsilva-p <lsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/24 09:08:04 by lsilva-p          #+#    #+#             */
-/*   Updated: 2023/08/28 09:07:34 by lsilva-p         ###   ########.fr       */
+/*   Created: 2023/08/26 13:49:25 by lsilva-p          #+#    #+#             */
+/*   Updated: 2023/08/28 09:15:51 by lsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 t_byte	*new_node(char byte)
 {
