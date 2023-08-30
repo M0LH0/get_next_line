@@ -6,7 +6,7 @@
 /*   By: lsilva-p <lsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 08:55:21 by lsilva-p          #+#    #+#             */
-/*   Updated: 2023/08/28 16:45:32 by lsilva-p         ###   ########.fr       */
+/*   Updated: 2023/08/30 08:10:27 by lsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,31 @@
 
 char	*get_next_line(int fd)
 {
-	static t_file	file[1024];
+	static t_file	fl[1024];
 
-	if (fd >= 0 && file[fd].pos >= file[fd].read)
+	if (fd >= 0 && fl[fd].pos >= fl[fd].rd)
 	{
-		file[fd].pos = 0;
-		if (file[fd].buffer)
-			free(file[fd].buffer);
-		file[fd].buffer = (char *)malloc((BUFFER_SIZE + 1) * (sizeof (char)));
-		if (!file[fd].buffer)
+		fl[fd].pos = 0;
+		if (fl[fd].buff)
+			free(fl[fd].buff);
+		fl[fd].buff = (char *)malloc((BUFFER_SIZE + 1) * (sizeof (char)));
+		if (!fl[fd].buff)
 			return (NULL);
-		while (file[fd].pos < BUFFER_SIZE)
-			file[fd].buffer[file[fd].pos++] = '\0';
-		file[fd].pos = 0;
-		file[fd].len = 0;
-		file[fd].string = NULL;
-		file[fd].fd = fd;
-		file[fd].read = read(fd, file[fd].buffer, BUFFER_SIZE);
+		while (fl[fd].pos < BUFFER_SIZE)
+			fl[fd].buff[fl[fd].pos++] = '\0';
+		fl[fd].pos = 0;
+		fl[fd].len = 0;
+		fl[fd].string = NULL;
+		fl[fd].fd = fd;
+		fl[fd].rd = read(fd, fl[fd].buff, BUFFER_SIZE);
 	}
-	if (fd < 0 || fd > 1024 || file[fd].buffer[file[fd].pos] == '\0')
+	if (fd < 0 || fd > 1024 || fl[fd].rd < 0 || fl[fd].buff[fl[fd].pos] == '\0')
 	{
-		if (file[fd].buffer)
-			free(file->buffer);
+		free(fl[fd].buff);
+		fl[fd].buff = NULL;
 		return (NULL);
 	}
-	return (ft_read_line(&file[fd]));
+	return (ft_read_line(&fl[fd]));
 }
 
 char	*ft_read_line(t_file *make)
@@ -46,20 +46,20 @@ char	*ft_read_line(t_file *make)
 	make->len = 0;
 	while (1)
 	{
-		to_the_last(&make->string, new_node(*(make->pos + make->buffer)));
-		if (*(make->buffer + make->pos) == '\n'
-			|| *(make->buffer + make->pos) == '\0')
+		to_the_last(&make->string, new_node(*(make->pos + make->buff)));
+		if (*(make->buff + make->pos) == '\n'
+			|| *(make->buff + make->pos) == '\0')
 			break ;
 		make->pos++;
 		make->len++;
-		if (make->pos >= make->read)
+		if (make->pos >= make->rd)
 		{
-			if (make->buffer)
-				free(make->buffer);
-			make->buffer = malloc(BUFFER_SIZE + 1);
+			if (make->buff)
+				free(make->buff);
+			make->buff = malloc(BUFFER_SIZE + 1);
 			make->pos = 0;
-			make->read = read(make->fd, make->buffer, BUFFER_SIZE);
-			if (make->read <= 0)
+			make->rd = read(make->fd, make->buff, BUFFER_SIZE);
+			if (make->rd <= 0)
 				break ;
 		}
 	}
@@ -74,7 +74,7 @@ char	*ft_make_line(t_file *make)
 	char	*line;
 	int		i;
 
-	if (make->string && make->read < 0)
+	if (make->string && make->rd < 0)
 	{
 		free_node(make->string);
 		return (NULL);

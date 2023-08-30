@@ -6,7 +6,7 @@
 /*   By: lsilva-p <lsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 13:48:39 by lsilva-p          #+#    #+#             */
-/*   Updated: 2023/08/28 09:19:56 by lsilva-p         ###   ########.fr       */
+/*   Updated: 2023/08/30 08:09:57 by lsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ typedef struct s_file
 	int		fd;
 	int		len;
 	int		pos;
-	int		read;
+	int		rd;
 	t_byte	*string;
-	char	*buffer;
+	char	*buff;
 }				t_file;
 
 char	*get_next_line(int fd);
