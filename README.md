@@ -1,4 +1,4 @@
-<h1 align="left">Libft</h1>
+<h1 align="left">Get Next Line</h1>
 <div><img align="right" src="https://game.42sp.org.br/static/assets/achievements/get_next_linem.png"/> <h4>The second project on the 42sp fundamentals track, Get Next Line, is based on the creation of a function that returns line by line from a file pointed to by a file descriptor, covering topics such as reading and describing files, static variables, dynamic allocation memory, pointers, and more. </h4>
 <div> <h3>Get Next Line</h3>
 
