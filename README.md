@@ -2,15 +2,15 @@
 <div><img align="right" src="https://game.42sp.org.br/static/assets/achievements/get_next_linem.png"/> <h4>The second project on the 42sp fundamentals track, Get Next Line, is based on the creation of a function that returns line by line from a file pointed to by a file descriptor, covering topics such as reading and describing files, static variables, dynamic allocation memory, pointers, and more. </h4>
 <div> <h3>Get Next Line</h3>
 
-* [`get_next_line.c`](src/get_next_line.c)      [`get_next_line_bonus.c`](src/get_next_line_bonus.c)
+* [`get_next_line.c`](get_next_line.c)      [`get_next_line_bonus.c`](get_next_line_bonus.c)
 
 <h3>Get Next Line utils</h3>
 
-* [`get_next_line_utils.c`](utils/get_next_line_utils.c)      [`get_next_line_utils_bonus.c`](utils/get_next_line_utils_bonus.c)
+* [`get_next_line_utils.c`](get_next_line_utils.c)      [`get_next_line_utils_bonus.c`](get_next_line_utils_bonus.c)
 
 <h3>Headers</h3>
 
- * [`get_next_line.h`](include/get_next_line.h)      [`get_next_line_bonus.h`](include/get_next_line_bonus.h)
+ * [`get_next_line.h`](get_next_line.h)      [`get_next_line_bonus.h`](get_next_line_bonus.h)
 
 </div>
 <div>
